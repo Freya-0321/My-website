@@ -1,0 +1,13 @@
+{
+  "name": "super-aigeo",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Super AIGEO - Enterprise AEO/GEO AI visibility SaaS website",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}

@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Super AIGEO</title>
+    <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/5ac3fe7c6abd2f62067f266d89671492?family=HelveticaNowDisplay-Medium" />
+    <link rel="stylesheet" href="https://db.onlinewebfonts.com/c/1aa3377e489837a26d019bba501e779d?family=HelveticaNowDisplayW01-Rg" />
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <video
+      id="heroVideo"
+      class="hero-video"
+      muted
+      playsinline
+      preload="auto"
+      src="https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260530_042513_df96a13b-6155-4f6e-8b93-c9dee66fba08.mp4"
+    ></video>
+
+    <nav class="landing-navbar" aria-label="Landing navigation">
+      <a class="landing-logo" href="#hero">
+        <span>Super AIGEO(R)</span>
+        <b aria-hidden="true">✳︎</b>
+      </a>
+      <div class="landing-links">
+        <a href="#overview">Dashboard</a><span>, </span>
+        <a href="#product-center">Product Center</a><span>, </span>
+        <a href="#prompts">Prompts</a><span>, </span>
+        <a href="#monitoring">Monitoring</a>
+      </div>
+      <a class="landing-cta" href="#report">Get report</a>
+      <button id="mobileMenuButton" class="mobile-menu-button" aria-label="Open menu" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <div id="mobileOverlay" class="mobile-overlay" aria-hidden="true">
+      <a href="#overview">Dashboard</a>
+      <a href="#product-center">Product Center</a>
+      <a href="#prompts">Prompts</a>
+      <a href="#monitoring">Monitoring</a>
+      <a class="underlined" href="#report">Get report</a>
+    </div>
+
+    <section id="hero" class="landing-hero">
+      <div class="hero-copy">
+        <div class="blurred-intro">
+          Hey there, meet A.V.I.A,<br />
+          Super AIGEO's Adaptive Visibility Intelligence Agent
+        </div>
+        <p id="typewriterText" class="typewriter-text"></p>
+        <div id="heroActions" class="hero-actions">
+          <a href="#overview">Run visibility scan</a>
+          <a href="#product-center">Build brand archive</a>
+          <a href="#prompts">Generate prompts</a>
+          <a href="#monitoring">Track AI mentions</a>
+          <button id="copyEmailButton" class="outline-pill">
+            <span>Reach us: <u>hello@aivisibility.ai</u></span>
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="8" y="8" width="11" height="11" rx="2"></rect>
+              <rect x="5" y="5" width="11" height="11" rx="2"></rect>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand-lockup">
+          <div class="brand-mark super-mark">
+            <svg viewBox="0 0 64 64" aria-hidden="true">
+              <path d="M10 43 L24 17 L35 37 L44 23 L56 43" />
+              <path d="M17 43 H56" />
+              <circle cx="24" cy="17" r="3" />
+              <circle cx="35" cy="37" r="3" />
+              <circle cx="44" cy="23" r="3" />
+            </svg>
+          </div>
+          <div>
+            <strong>Super AIGEO</strong>
+            <span>AI Visibility SaaS</span>
+          </div>
+        </div>
+
+        <nav class="nav-list" aria-label="主导航">
+          <span>数据分析</span>
+          <a class="active" href="#overview">数据总览</a>
+          <a href="#mention">提及率</a>
+          <a href="#competitors">品牌对比</a>
+          <a href="#sentiment">情感分析</a>
+          <a href="#citation">引用分析</a>
+          <span>GEO 锦囊</span>
+          <a href="#product-center">产品中心</a>
+          <a href="#prompts">Search Prompts</a>
+          <span>监控</span>
+          <a href="#monitoring">监控历史</a>
+          <a href="#report">报告中心</a>
+        </nav>
+
+        <section class="run-panel">
+          <div class="panel-title">New Assessment</div>
+          <label>
+            <span>企业名称</span>
+            <input id="companyName" value="CIGA Design 玺佳" />
+          </label>
+          <label>
+            <span>官网 URL</span>
+            <input id="websiteUrl" value="https://cigadesign.com" />
+          </label>
+          <label>
+            <span>竞品</span>
+            <textarea id="competitors" rows="3">飞亚达, 天王表, 海鸥表</textarea>
+          </label>
+          <label>
+            <span>行业</span>
+            <input id="industry" placeholder="自动识别" />
+          </label>
+          <label>
+            <span>Prompt 数量</span>
+            <select id="promptCount">
+              <option>10</option>
+              <option selected>20</option>
+              <option>30</option>
+              <option>50</option>
+              <option>100</option>
+              <option value="custom">自定义</option>
+            </select>
+          </label>
+          <input id="customPromptCount" class="hidden" type="number" min="1" max="100" value="20" />
+
+          <div class="segmented" role="group" aria-label="Prompt 模式">
+            <button class="active" data-mode="hybrid">混合</button>
+            <button data-mode="auto">AI生成</button>
+            <button data-mode="template">模板</button>
+            <button data-mode="manual">手动</button>
+          </div>
+
+          <button id="runAnalysis" class="primary-action">Run Assessment</button>
+        </section>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="breadcrumb">首页 / GEO 锦囊 / 数据总览</p>
+            <p class="eyebrow">Enterprise AEO/GEO Automation</p>
+            <h1>Super AIGEO</h1>
+          </div>
+          <div class="top-actions">
+            <button class="toolbar-action">重新检测</button>
+            <button class="toolbar-action">同步 Dify SOP</button>
+            <button id="downloadMarkdown" class="toolbar-action primary">Markdown</button>
+            <button id="printReport" class="toolbar-action">PDF</button>
+          </div>
+        </header>
+
+        <section id="overview" class="score-strip">
+          <article class="hero-score">
+            <span>综合评分</span>
+            <strong id="totalScore">--</strong>
+            <small id="rating">Waiting</small>
+          </article>
+          <article>
+            <span>AEO</span>
+            <strong id="aeoScore">--</strong>
+            <small>30 分</small>
+          </article>
+          <article>
+            <span>GEO</span>
+            <strong id="geoScore">--</strong>
+            <small>35 分</small>
+          </article>
+          <article>
+            <span>Technical SEO</span>
+            <strong id="technicalScore">--</strong>
+            <small>20 分</small>
+          </article>
+          <article>
+            <span>E-E-A-T</span>
+            <strong id="eeatScore">--</strong>
+            <small>15 分</small>
+          </article>
+        </section>
+
+        <section class="dashboard-grid">
+          <article class="insight-strip full">
+            <div>
+              <span>品牌档案</span>
+              <strong id="brandArchiveStatus">--</strong>
+              <small id="brandAliasCount">--</small>
+            </div>
+            <div>
+              <span>竞争监控</span>
+              <strong id="competitorCount">--</strong>
+              <small>竞品样本</small>
+            </div>
+            <div>
+              <span>Prompt 配置</span>
+              <strong id="promptConfigCount">--</strong>
+              <small>最高支持 100</small>
+            </div>
+            <div>
+              <span>监控平台</span>
+              <strong id="monitorPlatformCount">--</strong>
+              <small id="monitorPlatformNames">--</small>
+            </div>
+          </article>
+
+          <article class="chart-panel wide chart-tall">
+            <div class="section-head">
+              <div>
+                <h2>四维度评分</h2>
+                <p id="companyMeta">等待分析</p>
+              </div>
+            </div>
+            <canvas id="radarChart" width="640" height="420"></canvas>
+          </article>
+
+          <article class="chart-panel chart-tall">
+            <div class="section-head">
+              <h2>官网引用率</h2>
+            </div>
+            <canvas id="citationGauge" width="320" height="320"></canvas>
+          </article>
+
+          <article id="mention" class="chart-panel">
+            <div class="section-head">
+              <h2>提及漏斗</h2>
+            </div>
+            <div id="mentionFunnel" class="funnel-list"></div>
+          </article>
+
+          <article id="platforms" class="chart-panel wide">
+            <div class="section-head">
+              <h2>AI 平台对比</h2>
+              <div id="platformSelector" class="platform-selector"></div>
+            </div>
+            <canvas id="platformChart" width="720" height="340"></canvas>
+          </article>
+
+          <article id="sentiment" class="chart-panel">
+            <div class="section-head">
+              <h2>品牌情感</h2>
+            </div>
+            <div id="sentimentList" class="sentiment-list"></div>
+          </article>
+
+          <article class="chart-panel wide">
+            <div class="section-head">
+              <h2>品牌曝光趋势</h2>
+            </div>
+            <canvas id="trendChart" width="720" height="320"></canvas>
+          </article>
+
+          <article id="keywords" class="chart-panel">
+            <div class="section-head">
+              <h2>关键词云</h2>
+            </div>
+            <div id="keywordCloud" class="keyword-cloud"></div>
+          </article>
+
+          <article id="citation" class="chart-panel">
+            <div class="section-head">
+              <h2>引用来源</h2>
+            </div>
+            <div id="citationSources" class="source-list"></div>
+          </article>
+
+          <article id="competitors" class="chart-panel wide">
+            <div class="section-head">
+              <h2>竞品排名</h2>
+            </div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Rank</th>
+                    <th>品牌</th>
+                    <th>推荐率</th>
+                    <th>曝光率</th>
+                    <th>官网引用率</th>
+                    <th>综合排名分</th>
+                  </tr>
+                </thead>
+                <tbody id="competitorRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article id="product-center" class="chart-panel full product-center">
+            <div class="section-head">
+              <div>
+                <h2>产品中心</h2>
+                <p>品牌档案、竞品管理、Prompt 管理、监控平台与项目设置</p>
+              </div>
+            </div>
+
+            <div class="product-center-cards">
+              <article>
+                <span>品牌档案</span>
+                <strong id="pcArchiveStatus">--</strong>
+                <small id="pcArchiveMeta">--</small>
+              </article>
+              <article>
+                <span>竞争监控</span>
+                <strong id="pcCompetitorMeta">--</strong>
+                <div class="progress-track"><span id="pcCompetitorProgress"></span></div>
+              </article>
+              <article>
+                <span>Prompt 配置</span>
+                <strong id="pcPromptMeta">--</strong>
+                <div class="progress-track"><span id="pcPromptProgress"></span></div>
+              </article>
+              <article>
+                <span>监控平台</span>
+                <strong id="pcPlatformMeta">--</strong>
+                <div id="pcPlatformDots" class="platform-dots"></div>
+              </article>
+            </div>
+
+            <div class="product-tabs" role="tablist" aria-label="产品中心">
+              <button class="active" data-product-tab="archive">品牌档案</button>
+              <button data-product-tab="competitors">竞品管理 <span id="pcCompetitorBadge">0</span></button>
+              <button data-product-tab="prompts">Prompt 管理 <span id="pcPromptBadge">0</span></button>
+              <button data-product-tab="platforms">监控平台 <span id="pcPlatformBadge">0</span></button>
+              <button data-product-tab="settings">设置</button>
+            </div>
+
+            <div class="product-tab-panels">
+              <section class="product-tab-panel active" data-product-panel="archive">
+                <div class="archive-panel-grid">
+                  <div id="brandArchive" class="archive-block"></div>
+                  <div>
+                    <h3>产品矩阵</h3>
+                    <div id="productRows" class="product-grid"></div>
+                  </div>
+                </div>
+              </section>
+
+              <section class="product-tab-panel" data-product-panel="competitors">
+                <div class="tab-panel-head">
+                  <div>
+                    <h3>竞品管理</h3>
+                    <p>维护对标品牌、名称变体和域名变体，用于推荐率与曝光率对比。</p>
+                  </div>
+                  <button class="ghost-action">添加竞品</button>
+                </div>
+                <div id="competitorCards" class="competitor-card-grid"></div>
+              </section>
+
+              <section class="product-tab-panel" data-product-panel="prompts">
+                <div class="tab-panel-head">
+                  <div>
+                    <h3>Prompt 管理</h3>
+                    <p>按意图分类维护 Prompt，支持 AI 生成、模板、手动和混合模式。</p>
+                  </div>
+                  <button class="ghost-action">批量生成</button>
+                </div>
+                <div id="promptGroupRows" class="prompt-group-list"></div>
+              </section>
+
+              <section class="product-tab-panel" data-product-panel="platforms">
+                <div class="tab-panel-head">
+                  <div>
+                    <h3>监控平台</h3>
+                    <p>选择需要持续测试的 AI 搜索与问答平台。</p>
+                  </div>
+                  <div class="inline-actions">
+                    <button class="ghost-action">全选</button>
+                    <button class="ghost-action muted">清空</button>
+                  </div>
+                </div>
+                <div id="platformCatalog" class="monitor-platform-grid"></div>
+              </section>
+
+              <section class="product-tab-panel" data-product-panel="settings">
+                <div class="tab-panel-head">
+                  <div>
+                    <h3>设置</h3>
+                    <p>配置评估频率、预警阈值、报告语言和数据保留周期。</p>
+                  </div>
+                  <button class="ghost-action">保存设置</button>
+                </div>
+                <div id="settingsRows" class="settings-grid"></div>
+              </section>
+            </div>
+          </article>
+
+          <article id="prompts" class="chart-panel">
+            <div class="section-head">
+              <h2>Search Prompts</h2>
+            </div>
+            <div id="promptList" class="prompt-list"></div>
+          </article>
+
+          <article id="monitoring" class="chart-panel wide">
+            <div class="section-head">
+              <div>
+                <h2>监控历史</h2>
+                <p>结合 Dify SOP 工作流，记录每次企业可见度评估的执行状态和结果变化。</p>
+              </div>
+              <div class="monitor-actions">
+                <select id="historyPlatformFilter">
+                  <option>全部平台</option>
+                  <option>国内平台</option>
+                  <option>国际平台</option>
+                </select>
+                <select id="historyRangeFilter">
+                  <option>近7天</option>
+                  <option>近30天</option>
+                  <option>近90天</option>
+                </select>
+                <button class="toolbar-action primary">立即复测</button>
+                <button class="toolbar-action">导出记录</button>
+              </div>
+            </div>
+            <div id="sopWorkflow" class="sop-workflow"></div>
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>周期</th>
+                    <th>总分</th>
+                    <th>提及率</th>
+                    <th>引用率</th>
+                    <th>情感</th>
+                    <th>SOP 阶段</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody id="historyRows"></tbody>
+              </table>
+            </div>
+          </article>
+
+          <article id="report" class="chart-panel full">
+            <div class="section-head">
+              <h2>诊断与路线图</h2>
+            </div>
+            <div class="report-grid">
+              <div>
+                <h3>优势</h3>
+                <ul id="strengthList"></ul>
+              </div>
+              <div>
+                <h3>问题诊断</h3>
+                <ul id="weaknessList"></ul>
+              </div>
+              <div class="roadmap">
+                <h3>Citation Engineering</h3>
+                <div id="recommendationList"></div>
+              </div>
+            </div>
+          </article>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
